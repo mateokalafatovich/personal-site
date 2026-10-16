@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Starboys FPL: a full-stack Fantasy Premier League analytics platform built by Mateo Kalafatovich with React, Express, SQLite, and Redis.">
+    <title>Latest Project: Starboys FPL | Mateo Kalafatovich</title>
+    <link rel="icon" href="assets/trident-emblem-emoji.jpg" type="image/jpeg">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="assets/trident-emblem-emoji.jpg" alt="Mateo Kalafatovich - home" width="32" height="32">
+        </a>
+        <nav aria-label="Main Navigation">
+            <a href="https://mateokalaf.netlify.app/latest.html">Latest</a>
+            <a href="https://mateokalaf.netlify.app/interests.html">Interests</a>
+            <a href="https://mateokalaf.netlify.app/contact.html">Contact Me</a>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h1>Starboys FPL</h1>
+            <p>
+                A full-stack analytics platform that tracks season-long performance for my
+                10-person Fantasy Premier League group.
+            </p>
+            <p>
+                <b>Status:</b> <span>In active development</span> &middot;
+                <b>Started:</b> <time datetime="2026-09">September 2026</time><br>
+                <a href="https://github.com/mateokalafatovich/">View the source on GitHub</a>
+            </p>
+
+            <section>
+                <h2>Why I Built It</h2>
+                <p>
+                    Every week, my league argues about who is actually the best manager. The official
+                    Fantasy Premier League site shows a snapshot of where everyone stands
+                    <em>right now</em>, but it doesn't make it easy to see how the season has
+                    unfolded: who climbed, who collapsed, and whose transfers paid off.
+                </p>
+                <p>
+                    I wanted one place where the whole league could see the full story of the season.
+                    I also wanted a real project to practice designing a backend that has to deal with
+                    an unreliable outside data source.
+                </p>
+            </section>
+
+            <section>
+                <h2>Season Tracker</h2>
+                <p>
+                    Starboys FPL follows the Premier League season gameweek by gameweek. This is
+                    how far into the season the app has collected data:
+                </p>
+                <p>
+                    <label for="season-progress">2026/27 season:</label>
+                    <progress id="season-progress" value="7" max="38">Gameweek 7 of 38</progress>
+                    <span>Gameweek 7 of 38</span>
+                </p>
+            </section>
+
+            <section>
+                <h2>Architecture</h2>
+                <p>
+                    The React frontend talks to an Express REST API. The API stores league data in a
+                    normalized SQLite database and pulls fresh stats from the Fantasy Premier League
+                    API through a Redis cache.
+                </p>
+            </section>
+
+            <section>
+                <h2>The Data Pipeline</h2>
+                <p>
+                    The Fantasy Premier League API doesn't always return complete data, and calling
+                    it too often is slow. The ingestion pipeline handles both problems. Each update
+                    runs through these steps in order:
+                </p>
+                <ol>
+                    <li>Check the Redis cache for recent gameweek data before calling the FPL API.</li>
+                    <li>On a cache miss, fetch the latest data from the FPL API and cache the response.</li>
+                    <li>Validate the response and detect any gameweeks that are missing or incomplete.</li>
+                    <li>Run the historical backfill script to reconcile those missing gameweeks.</li>
+                    <li>Write the cleaned results into the normalized SQLite schema.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Features</h2>
+                <p>
+                    League members can explore the season on their own across multiple pages built
+                    with React Router and Recharts.
+                </p>
+                <ul>
+                    <li><strong>Points progression:</strong> each manager's running points total, gameweek by gameweek</li>
+                    <li><strong>Rank progression:</strong> how league positions have shifted over the season</li>
+                    <li><strong>Season history:</strong> stored stats for every member, kept consistent by the backfill script</li>
+                </ul>
+                <figure>
+                    <picture>
+                        <source srcset="assets/starboys-rank-chart.avif" type="image/avif">
+                        <source srcset="assets/starboys-rank-chart.webp" type="image/webp">
+                        <img src="assets/starboys-chart.png" alt="Line chart in Starboys FPL" width="800" height="450">
+                    </picture>
+                    <figcaption>The rank progression chart, built with Recharts.</figcaption>
+                    <!--I apologize for one of the names in there. It is not mine. I'm surprised it made it past moderation.-->
+                </figure>
+            </section>
+
+            <section>
+                <h2>What's Next</h2>
+                <ul>
+                    <li>Head-to-head comparisons between any two managers</li>
+                    <li>Weekly recap summaries for the league</li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <nav aria-label="Social links">
+            <ul>
+                <li>
+                    <button type="button" aria-label="Copy email address">Email</button>
+                </li>
+                <li><a href="https://github.com/mateokalafatovich">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/mateo-adrian-kalafatovich/">LinkedIn</a></li>
+                <li><a href="https://www.instagram.com/mateo.kalaf/">Instagram</a></li>
+            </ul>
+        </nav>
+        <p><small>&copy; 2026 Mateo Kalafatovich</small></p>
+    </footer>
+</body>
+</html>
