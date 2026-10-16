@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Experiments with HTML media and scripting elements: video, audio, source, canvas, and template.">
+    <title>Experiments | Mateo Kalafatovich</title>
+    <link rel="icon" href="assets/trident-emblem-emoji.jpg" type="image/jpeg">
+    <style>
+        main > section {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="assets/trident-emblem-emoji.jpg" alt="Mateo Kalafatovich – home" width="32" height="32">
+        </a>
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="latest.html">Latest</a></li>
+                <li><a href="interests.html">Interests</a></li>
+                <li><a href="contact.html">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Experiments</h1>
+        <p>
+            This page explores HTML elements for media, graphics, and reusable markup. Each
+            experiment ties back to something on my site.
+        </p>
+
+        <section>
+            <h2>Video: Starboys FPL Demo</h2>
+            <video controls width="640" height="360" preload="metadata">
+                <source src="assets/starboysfpl.webm" type="video/webm">
+                <source src="assets/starboysfpl.mp4" type="video/mp4">
+                <p>
+                    Your browser doesn't support embedded video.
+                    <a href="assets/starboysfpl.mp4">Download the Starboys FPL demo</a> instead.
+                </p>
+            </video>
+        </section>
+
+        <section>
+            <h2>Audio: Random Audio</h2>
+            <audio controls preload="metadata">
+                <source src="assets/sample-3s.ogg" type="audio/ogg">
+                <source src="assets/sample-3s.mp3" type="audio/mpeg">
+                <p>
+                    Your browser doesn't support embedded audio.
+                    <a href="assets/intro.mp3">Download my introduction</a> instead.
+                </p>
+            </audio>
+        </section>
+
+        <section>
+            <h2>Canvas: Gameweek Points Chart</h2>
+            <p>
+                This short script draws a bar chart of <em>sample</em> gameweek points,
+                similar to the charts in <a href="latest.html">Starboys FPL</a>.
+            </p>
+            <canvas id="points-chart" width="380" height="230">
+                Bar chart of sample Fantasy Premier League points for gameweeks 1 through 7:
+                54, 67, 48, 72, 61, 80, and 58 points.
+            </canvas>
+            <script>
+                const canvas = document.getElementById('points-chart');
+                const ctx = canvas.getContext('2d');
+                const points = [54, 67, 48, 72, 61, 80, 58];
+                points.forEach((p, i) => {
+                    ctx.fillStyle = 'steelblue';
+                    ctx.fillRect(20 + i * 50, 200 - p * 2, 35, p * 2);
+                    ctx.fillStyle = 'black';
+                    ctx.fillText('GW' + (i + 1), 25 + i * 50, 215);
+                });
+            </script>
+            <noscript>
+                <p>JavaScript is turned off, so the chart can't be drawn. The data is: 54, 67, 48, 72, 61, 80, and 58 points for gameweeks 1 through 7.</p>
+            </noscript>
+        </section>
+
+        <section>
+            <template id="project-card">
+                <h2>Future Project for Current Page</h2>
+                <article>
+                    <h3>Project Title</h3>
+                    <p><time datetime="2026-01">Start date</time> - Present</p>
+                    <p>Summary of project</p>
+                    <ul>
+                        <li>Key accomplishment</li>
+                        <li>Key accomplishment</li>
+                    </ul>
+                    <p><strong>Tech:</strong> Technologies used</p>
+                </article>
+            </template>
+        </section>
+    </main>
+
+    <footer>
+        <nav aria-label="Social links">
+            <ul>
+                <li>
+                    <button type="button" aria-label="Copy email address">Email</button>
+                </li>
+                <li><a href="https://github.com/mateokalafatovich">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/mateo-adrian-kalafatovich/">LinkedIn</a></li>
+                <li><a href="https://www.instagram.com/mateo.kalaf/">Instagram</a></li>
+            </ul>
+        </nav>
+        <p><small>&copy; 2026 Mateo Kalafatovich</small></p>
+    </footer>
+</body>
+</html>
