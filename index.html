@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        project-card {
+            display: block;
+            border: 1px solid black;
+            padding: 1rem;
+        }
+    </style>
     <title>Personal Site</title>
 </head>
 <body>
@@ -88,38 +95,41 @@
             </section>
             <section>
                 <h2>Projects</h2>
-                <!-- perhaps create project tag-->
-                <article>
-                    <h3>Starboys FPL</h3>
-                    <p><em>September 2026 - Present</em></p>
-                    <p>
-                        Starboys FPL is an analytics platform I 
-                            built for my Fantasy Premier League group of 10 
-                            friends.
-                    </p>
-                    <ul>
-                        <li>Designed a normalized SQLite schema and <b>REST API</b> with Express to store season-long stats for every league member</li>
-                        <li>Added a <b>Redis-backed caching</b> layer to cut down on repeated calls to the Fantasy Premier League API</li>
-                        <li>Wrote a historical backfill script to reconcile missing gameweek data</li>
-                        <li>Built multi-page charts of points and rank progression using Recharts and <b>React Router</b></li>
-                    </ul>
-                    <p><strong>Tech:</strong> React, Node.js, Express, SQLite, Redis</p>
-                </article>
-                <article>
-                    <h3>Eastlake High School Tutoring App</h3>
-                    <p><em>April 2024 - August 2025</em></p>
-                    <p>
-                        Before college, I helped build a web platform for Eastlake High School that connects
-                        students with peer tutors. Students can browse tutor profiles and book sessions, which
-                        replaces the scattered process of finding help on their own.
-                    </p>
-                    <ul>
-                        <li>Built a <b>PHP</b> and <b>MySQL</b> platform with scheduling and profile management for students and tutors</li>
-                        <li>Implemented responsive UI components so students could browse tutors and book sessions easily</li>
-                        <li>Extended the database schema and backend logic to support session tracking and profile editing</li>
-                    </ul>
-                    <p><strong>Tech:</strong> PHP, MySQL, HTML, CSS</p>
-                </article>
+                <project-card>
+                    <article>
+                        <h3>Starboys FPL</h3>
+                        <p><em>September 2026 - Present</em></p>
+                        <p>
+                            Starboys FPL is an analytics platform I 
+                                built for my Fantasy Premier League group of 10 
+                                friends.
+                        </p>
+                        <ul>
+                            <li>Designed a normalized SQLite schema and <b>REST API</b> with Express to store season-long stats for every league member</li>
+                            <li>Added a <b>Redis-backed caching</b> layer to cut down on repeated calls to the Fantasy Premier League API</li>
+                            <li>Wrote a historical backfill script to reconcile missing gameweek data</li>
+                            <li>Built multi-page charts of points and rank progression using Recharts and <b>React Router</b></li>
+                        </ul>
+                        <p><strong>Tech:</strong> React, Node.js, Express, SQLite, Redis</p>
+                    </article>
+                </project-card>
+                <project-card>
+                    <article>
+                        <h3>Eastlake High School Tutoring App</h3>
+                        <p><em>April 2024 - August 2025</em></p>
+                        <p>
+                            Before college, I helped build a web platform for Eastlake High School that connects
+                            students with peer tutors. Students can browse tutor profiles and book sessions, which
+                            replaces the scattered process of finding help on their own.
+                        </p>
+                        <ul>
+                            <li>Built a <b>PHP</b> and <b>MySQL</b> platform with scheduling and profile management for students and tutors</li>
+                            <li>Implemented responsive UI components so students could browse tutors and book sessions easily</li>
+                            <li>Extended the database schema and backend logic to support session tracking and profile editing</li>
+                        </ul>
+                        <p><strong>Tech:</strong> PHP, MySQL, HTML, CSS</p>
+                    </article>
+                </project-card>
             </section>
         </div>
 
